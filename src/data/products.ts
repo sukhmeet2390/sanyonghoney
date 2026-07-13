@@ -114,9 +114,9 @@ export const businessInfo = {
   tagline: 'Pure Raw Honey · Farm to Table',
   description:
     'Sanyog Honey is a family-run beekeeping farm by YCR Bee Farms & Products, delivering pure, raw, unprocessed honey directly from Indian apiaries to your doorstep.',
-  whatsapp: '+919958577259',
+  whatsapp: '+919958320812',
   email: 'sanyoghoney@gmail.com',
-  phone: '+919958577259',
+  phone: '+919958320812',
   address: 'A8 Mansarover Colony, Ramghat Road, Aligarh, UP 202001, India',
   city: 'Aligarh',
   state: 'Uttar Pradesh',
