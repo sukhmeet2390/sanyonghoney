@@ -13,6 +13,7 @@
 
 ## 🟡 P1 — Should Do Before Marketing
 
+- [ ] **Food certification details** — Get FSSAI license number + any other food safety certifications from Yogesh. Display on product pages, footer, and About page (required for selling food products in India)
 - [ ] **Privacy Policy page** — `/privacy/` (required if adding analytics or collecting any data)
 - [ ] **Terms of Service page** — `/terms/` (good to have for any commercial site)
 - [ ] **Google Search Console** — Submit sitemap after domain is live (`sanyoghoney.com/sitemap-index.xml`)
