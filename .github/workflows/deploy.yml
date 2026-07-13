@@ -26,8 +26,7 @@ jobs:
       - run: npm ci
       - run: npx astro build
         env:
-          # Set to 'true' once GoDaddy DNS is configured and custom domain is active
-          # CUSTOM_DOMAIN: 'true'
+          CUSTOM_DOMAIN: 'true'
           NODE_ENV: production
       - uses: actions/upload-pages-artifact@v3
         with:
