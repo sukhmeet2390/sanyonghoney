@@ -63,7 +63,7 @@ const schema = {
       <div class="relative">
         <div class="aspect-square rounded-2xl overflow-hidden bg-honey-100">
           <img
-            src={product.image}
+            src={`${base}${product.image.replace(/^\//, '')}`}
             alt={`${product.name} — pure raw honey`}
             class="w-full h-full object-cover"
           />
