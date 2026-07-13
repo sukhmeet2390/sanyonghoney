@@ -10,6 +10,7 @@ interface Props {
 
 const { title, description, canonical, schema } = Astro.props;
 const siteUrl = 'https://sanyoghoney.com';
+const base = import.meta.env.BASE_URL;
 const fullTitle = title === 'Sanyog Honey' ? 'Sanyog Honey — Pure Raw Honey · Farm to Table' : `${title} — Sanyog Honey`;
 ---
 
@@ -63,7 +64,7 @@ const fullTitle = title === 'Sanyog Honey' ? 'Sanyog Honey — Pure Raw Honey ·
     <!-- Nav -->
     <nav class="fixed top-0 w-full bg-cream-50/90 backdrop-blur-md border-b border-honey-200/50 z-50">
       <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-2">
+        <a href={base} class="flex items-center gap-2">
           <span class="text-2xl">🍯</span>
           <span class="text-lg font-serif font-bold text-honey-900 hover:text-honey-600 transition-colors">
             Sanyog Honey
@@ -77,19 +78,19 @@ const fullTitle = title === 'Sanyog Honey' ? 'Sanyog Honey — Pure Raw Honey ·
         </button>
         <!-- Desktop nav -->
         <div class="hidden sm:flex items-center gap-8 text-sm font-medium text-honey-800">
-          <a href="/" class="hover:text-honey-600 transition-colors">Home</a>
-          <a href="/about/" class="hover:text-honey-600 transition-colors">About Us</a>
-          <a href="/products/" class="hover:text-honey-600 transition-colors">Products</a>
-          <a href="/contact/" class="bg-honey-600 text-white px-4 py-2 rounded-full hover:bg-honey-700 transition-colors">Contact Us</a>
+          <a href={base} class="hover:text-honey-600 transition-colors">Home</a>
+          <a href={`${base}about/`} class="hover:text-honey-600 transition-colors">About Us</a>
+          <a href={`${base}products/`} class="hover:text-honey-600 transition-colors">Products</a>
+          <a href={`${base}contact/`} class="bg-honey-600 text-white px-4 py-2 rounded-full hover:bg-honey-700 transition-colors">Contact Us</a>
         </div>
       </div>
       <!-- Mobile nav -->
       <div id="mobile-menu" class="hidden sm:hidden border-t border-honey-200/50 bg-cream-50/95 backdrop-blur-md">
         <div class="px-6 py-4 flex flex-col gap-3 text-sm font-medium text-honey-800">
-          <a href="/" class="py-2 hover:text-honey-600 transition-colors">Home</a>
-          <a href="/about/" class="py-2 hover:text-honey-600 transition-colors">About Us</a>
-          <a href="/products/" class="py-2 hover:text-honey-600 transition-colors">Products</a>
-          <a href="/contact/" class="py-2 bg-honey-600 text-white text-center px-4 rounded-full hover:bg-honey-700 transition-colors">Contact Us</a>
+          <a href={base} class="py-2 hover:text-honey-600 transition-colors">Home</a>
+          <a href={`${base}about/`} class="py-2 hover:text-honey-600 transition-colors">About Us</a>
+          <a href={`${base}products/`} class="py-2 hover:text-honey-600 transition-colors">Products</a>
+          <a href={`${base}contact/`} class="py-2 bg-honey-600 text-white text-center px-4 rounded-full hover:bg-honey-700 transition-colors">Contact Us</a>
         </div>
       </div>
     </nav>
@@ -115,10 +116,10 @@ const fullTitle = title === 'Sanyog Honey' ? 'Sanyog Honey — Pure Raw Honey ·
           <div>
             <h3 class="font-semibold text-white mb-3">Quick Links</h3>
             <div class="flex flex-col gap-2 text-sm text-honey-300">
-              <a href="/" class="hover:text-honey-100 transition-colors">Home</a>
-              <a href="/about/" class="hover:text-honey-100 transition-colors">About Us</a>
-              <a href="/products/" class="hover:text-honey-100 transition-colors">Products</a>
-              <a href="/contact/" class="hover:text-honey-100 transition-colors">Contact Us</a>
+              <a href={base} class="hover:text-honey-100 transition-colors">Home</a>
+              <a href={`${base}about/`} class="hover:text-honey-100 transition-colors">About Us</a>
+              <a href={`${base}products/`} class="hover:text-honey-100 transition-colors">Products</a>
+              <a href={`${base}contact/`} class="hover:text-honey-100 transition-colors">Contact Us</a>
             </div>
           </div>
           <div>

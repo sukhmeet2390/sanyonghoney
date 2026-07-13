@@ -6,6 +6,8 @@ import FaqItem from '../components/FaqItem.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { products, businessInfo } from '../data/products';
 
+const base = import.meta.env.BASE_URL;
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -61,7 +63,7 @@ const faqs = [
           From our beekeeping farms in India to your table — raw, unprocessed honey with all the natural goodness intact. No sugar, no blending, no shortcuts.
         </p>
         <div class="flex flex-wrap items-center gap-4 mt-8">
-          <a href="/products/" class="inline-flex items-center gap-2 bg-honey-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-honey-700 shadow-md hover:shadow-lg transition-all">
+          <a href={`${base}products/`} class="inline-flex items-center gap-2 bg-honey-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-honey-700 shadow-md hover:shadow-lg transition-all">
             Browse Products →
           </a>
           <WhatsAppButton whatsappNumber={businessInfo.whatsapp} />
@@ -108,7 +110,7 @@ const faqs = [
           <h2 class="text-3xl sm:text-4xl font-serif font-bold text-honey-900">Our Honey Collection</h2>
           <p class="text-honey-600 mt-2">Every jar tells a story of the flowers, the bees, and the season.</p>
         </div>
-        <a href="/products/" class="hidden sm:inline-flex text-sm font-semibold text-honey-600 hover:text-honey-800 transition-colors">
+        <a href={`${base}products/`} class="hidden sm:inline-flex text-sm font-semibold text-honey-600 hover:text-honey-800 transition-colors">
           View all →
         </a>
       </div>
@@ -118,7 +120,7 @@ const faqs = [
         ))}
       </div>
       <div class="text-center mt-8 sm:hidden">
-        <a href="/products/" class="text-sm font-semibold text-honey-600 hover:text-honey-800 transition-colors">
+        <a href={`${base}products/`} class="text-sm font-semibold text-honey-600 hover:text-honey-800 transition-colors">
           View all products →
         </a>
       </div>
@@ -136,7 +138,7 @@ const faqs = [
         <p class="text-honey-700/80 mt-3 leading-relaxed">
           Every jar is cold-extracted and packed at the farm. No factories, no processing plants — just honest honey.
         </p>
-        <a href="/about/" class="inline-flex items-center gap-2 text-sm font-semibold text-honey-600 mt-6 hover:text-honey-800 transition-colors">
+        <a href={`${base}about/`} class="inline-flex items-center gap-2 text-sm font-semibold text-honey-600 mt-6 hover:text-honey-800 transition-colors">
           Read our story →
         </a>
       </div>
@@ -170,7 +172,7 @@ const faqs = [
     <p class="text-honey-600 mt-3 max-w-lg mx-auto">Order directly via WhatsApp — no apps, no signups, no hassle. Just pure honey delivered to your door.</p>
     <div class="mt-8 flex flex-wrap justify-center gap-4">
       <WhatsAppButton whatsappNumber={businessInfo.whatsapp} />
-      <a href="/products/" class="inline-flex items-center gap-2 bg-honey-100 text-honey-800 font-semibold px-6 py-3 rounded-full hover:bg-honey-200 transition-all">
+      <a href={`${base}products/`} class="inline-flex items-center gap-2 bg-honey-100 text-honey-800 font-semibold px-6 py-3 rounded-full hover:bg-honey-200 transition-all">
         Browse Products
       </a>
     </div>

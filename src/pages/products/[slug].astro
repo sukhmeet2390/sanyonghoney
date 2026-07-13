@@ -5,6 +5,8 @@ import FaqItem from '../../components/FaqItem.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import { products, businessInfo } from '../../data/products';
 
+const base = import.meta.env.BASE_URL;
+
 export function getStaticPaths() {
   return products.map(product => ({
     params: { slug: product.slug },
@@ -45,9 +47,9 @@ const schema = {
   <section class="bg-gradient-to-b from-honey-100/60 to-cream-50">
     <div class="max-w-6xl mx-auto px-6 pt-20 pb-4">
       <nav class="flex items-center gap-2 text-sm text-honey-500">
-        <a href="/" class="hover:text-honey-700 transition-colors">Home</a>
+        <a href={base} class="hover:text-honey-700 transition-colors">Home</a>
         <span>/</span>
-        <a href="/products/" class="hover:text-honey-700 transition-colors">Products</a>
+        <a href={`${base}products/`} class="hover:text-honey-700 transition-colors">Products</a>
         <span>/</span>
         <span class="text-honey-800 font-medium">{product.name}</span>
       </nav>

@@ -26,7 +26,9 @@ jobs:
       - run: npm ci
       - run: npx astro build
         env:
-          SITE: ${{ vars.SITE_URL || 'https://sukhmeet2390.github.io' }}
+          # Set to 'true' once GoDaddy DNS is configured and custom domain is active
+          # CUSTOM_DOMAIN: 'true'
+          NODE_ENV: production
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/

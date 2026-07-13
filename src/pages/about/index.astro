@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import FeatureCard from '../../components/FeatureCard.astro';
 
+const base = import.meta.env.BASE_URL;
 const schema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
@@ -123,10 +124,10 @@ const schema = {
       <h2 class="text-2xl font-serif font-bold text-honey-900">Want to know more?</h2>
       <p class="text-honey-600 mt-3">We love talking about bees and honey. Reach out anytime.</p>
       <div class="mt-6 flex flex-wrap justify-center gap-4">
-        <a href="/contact/" class="bg-honey-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-honey-700 shadow-md transition-all">
+        <a href={`${base}contact/`} class="bg-honey-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-honey-700 shadow-md transition-all">
           Contact Us
         </a>
-        <a href="/products/" class="bg-white text-honey-800 font-semibold px-6 py-3 rounded-full border border-honey-200 hover:bg-honey-50 transition-all">
+        <a href={`${base}products/`} class="bg-white text-honey-800 font-semibold px-6 py-3 rounded-full border border-honey-200 hover:bg-honey-50 transition-all">
           Browse Products
         </a>
       </div>
