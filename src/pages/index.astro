@@ -1,0 +1,178 @@
+---
+import Base from '../layouts/Base.astro';
+import ProductCard from '../components/ProductCard.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import FaqItem from '../components/FaqItem.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { products, businessInfo } from '../data/products';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Sanyog Honey",
+  "legalName": "YCR Bee Farms & Products",
+  "url": "https://sanyoghoney.com",
+  "description": businessInfo.description,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "A8 Mansarover Colony, Ramghat Road",
+    "addressLocality": "Aligarh",
+    "addressRegion": "Uttar Pradesh",
+    "postalCode": "202001",
+    "addressCountry": "IN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": businessInfo.email,
+    "telephone": businessInfo.phone,
+    "contactType": "sales"
+  }
+};
+
+const faqs = [
+  { question: "Is your honey really raw and unprocessed?", answer: "Yes. Our honey is cold-extracted and never heated above hive temperature. It retains all natural enzymes, pollen, and nutrients. You may notice crystallization over time — that's a sign of real, raw honey." },
+  { question: "Why does raw honey crystallize?", answer: "Crystallization is a natural process that happens in all real honey. It's actually a sign of quality — it means nothing has been added or removed. To return it to liquid, gently warm the jar in lukewarm water." },
+  { question: "How do I order?", answer: "Simply browse our products, click 'Order on WhatsApp', and we'll confirm your order, delivery, and payment details over chat. It's quick and personal." },
+  { question: "Do you deliver across India?", answer: "Yes! We ship across India. Delivery typically takes 3-7 business days depending on your location. Shipping charges are calculated at checkout." },
+  { question: "What's the shelf life of raw honey?", answer: "Raw honey has an indefinite shelf life when stored properly. Keep it in a cool, dry place away from direct sunlight. It only gets better with age!" },
+];
+---
+
+<Base
+  title="Sanyog Honey"
+  description="Pure raw honey from Indian beekeeping farms. Unprocessed, unfiltered, and delivered straight from the hive to your table."
+  canonical="https://sanyoghoney.com"
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-honey-100/60 via-cream-50 to-cream-50">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-honey-300/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4"></div>
+    <div class="max-w-6xl mx-auto px-6 pt-24 pb-12 sm:pt-36 sm:pb-20 relative">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 text-xs font-medium text-honey-700 bg-honey-200/50 px-3 py-1.5 rounded-full border border-honey-300/50 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-sage-500 animate-pulse"></span>
+          100% Raw · Pure · Unprocessed
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-serif font-extrabold text-honey-950 leading-[1.1] tracking-tight">
+          Pure honey,<br />straight from<br />
+          <span class="text-honey-600">our hives.</span>
+        </h1>
+        <p class="text-lg text-honey-700/80 mt-6 leading-relaxed max-w-lg">
+          From our beekeeping farms in India to your table — raw, unprocessed honey with all the natural goodness intact. No sugar, no blending, no shortcuts.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 mt-8">
+          <a href="/products/" class="inline-flex items-center gap-2 bg-honey-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-honey-700 shadow-md hover:shadow-lg transition-all">
+            Browse Products →
+          </a>
+          <WhatsAppButton whatsappNumber={businessInfo.whatsapp} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Sanyog -->
+  <section class="max-w-6xl mx-auto px-6 py-16 sm:py-24">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-serif font-bold text-honey-900">Why choose Sanyog Honey?</h2>
+      <p class="text-honey-600 mt-3 max-w-xl mx-auto">Every jar is a promise — from our bees to your family.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 animate-in">
+      <FeatureCard
+        icon="🐝"
+        title="Farm Fresh"
+        description="Sourced directly from our beekeeping apiaries across India. No middlemen, no factory processing."
+      />
+      <FeatureCard
+        icon="🌿"
+        title="100% Raw"
+        description="Cold-extracted and never heated. All natural enzymes, pollen, and nutrients stay intact."
+      />
+      <FeatureCard
+        icon="🚫"
+        title="No Additives"
+        description="Zero added sugar, zero preservatives, zero artificial flavoring. Just pure honey."
+      />
+      <FeatureCard
+        icon="📦"
+        title="Farm to Door"
+        description="Delivered directly from our farms to your doorstep across India. Fresh every time."
+      />
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section id="products" class="bg-honey-50/50 border-y border-honey-200/40">
+    <div class="max-w-6xl mx-auto px-6 py-16 sm:py-24">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-serif font-bold text-honey-900">Our Honey Collection</h2>
+          <p class="text-honey-600 mt-2">Every jar tells a story of the flowers, the bees, and the season.</p>
+        </div>
+        <a href="/products/" class="hidden sm:inline-flex text-sm font-semibold text-honey-600 hover:text-honey-800 transition-colors">
+          View all →
+        </a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-in">
+        {products.slice(0, 3).map(product => (
+          <ProductCard {...product} />
+        ))}
+      </div>
+      <div class="text-center mt-8 sm:hidden">
+        <a href="/products/" class="text-sm font-semibold text-honey-600 hover:text-honey-800 transition-colors">
+          View all products →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story Teaser -->
+  <section class="max-w-6xl mx-auto px-6 py-16 sm:py-24">
+    <div class="grid sm:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-honey-900">From hive to home</h2>
+        <p class="text-honey-700/80 mt-4 leading-relaxed">
+          Sanyog Honey is a family-run beekeeping farm. Our bees forage across diverse Indian flora — from mustard fields in the north to litchi orchards in the east. We believe in keeping things simple: let the bees do their work, and deliver the purest honey possible.
+        </p>
+        <p class="text-honey-700/80 mt-3 leading-relaxed">
+          Every jar is cold-extracted and packed at the farm. No factories, no processing plants — just honest honey.
+        </p>
+        <a href="/about/" class="inline-flex items-center gap-2 text-sm font-semibold text-honey-600 mt-6 hover:text-honey-800 transition-colors">
+          Read our story →
+        </a>
+      </div>
+      <div class="relative">
+        <div class="aspect-square rounded-2xl bg-gradient-to-br from-honey-200 to-honey-300/60 flex items-center justify-center">
+          <span class="text-9xl opacity-50">🐝</span>
+        </div>
+        <div class="absolute -bottom-4 -right-4 bg-white border border-honey-200 rounded-xl px-4 py-3 shadow-md">
+          <p class="text-sm font-semibold text-honey-900">100% Natural</p>
+          <p class="text-xs text-honey-600">No sugar · No blending</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white border-y border-honey-200/40">
+    <div class="max-w-3xl mx-auto px-6 py-16 sm:py-24">
+      <h2 class="text-3xl font-serif font-bold text-honey-900 text-center mb-10">Frequently Asked Questions</h2>
+      <div class="divide-y divide-honey-200">
+        {faqs.map(faq => (
+          <FaqItem question={faq.question} answer={faq.answer} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-6xl mx-auto px-6 py-16 sm:py-24 text-center">
+    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-honey-900">Ready to taste the difference?</h2>
+    <p class="text-honey-600 mt-3 max-w-lg mx-auto">Order directly via WhatsApp — no apps, no signups, no hassle. Just pure honey delivered to your door.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <WhatsAppButton whatsappNumber={businessInfo.whatsapp} />
+      <a href="/products/" class="inline-flex items-center gap-2 bg-honey-100 text-honey-800 font-semibold px-6 py-3 rounded-full hover:bg-honey-200 transition-all">
+        Browse Products
+      </a>
+    </div>
+  </section>
+</Base>

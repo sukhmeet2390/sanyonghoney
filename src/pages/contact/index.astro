@@ -1,0 +1,149 @@
+---
+import Base from '../../layouts/Base.astro';
+import { businessInfo } from '../../data/products';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Sanyog Honey",
+  "url": "https://sanyoghoney.com/contact/",
+  "description": "Get in touch with Sanyog Honey — order via WhatsApp, email, or phone."
+};
+---
+
+<Base
+  title="Contact Us"
+  description="Get in touch with Sanyog Honey — order via WhatsApp, email, or phone."
+  canonical="https://sanyoghoney.com/contact/"
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-honey-100/60 via-cream-50 to-cream-50">
+    <div class="max-w-6xl mx-auto px-6 pt-24 pb-8 sm:pt-32 sm:pb-12">
+      <div class="max-w-2xl">
+        <h1 class="text-4xl sm:text-5xl font-serif font-extrabold text-honey-950 leading-[1.1]">
+          Get in Touch
+        </h1>
+        <p class="text-lg text-honey-700/80 mt-4 leading-relaxed">
+          Have questions about our honey? Want to place an order? We're just a message away.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Cards -->
+  <section class="max-w-6xl mx-auto px-6 py-12 sm:py-16">
+    <div class="grid sm:grid-cols-3 gap-6">
+      <!-- WhatsApp -->
+      <a
+        href={`https://wa.me/${businessInfo.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent("Hi! I'd like to know more about Sanyog Honey products.")}`}
+        target="_blank"
+        rel="noopener"
+        class="group bg-white border border-honey-200/60 rounded-2xl p-8 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+      >
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#25D366]/10 text-3xl mb-4">
+          💬
+        </div>
+        <h3 class="font-serif font-bold text-honey-900 text-lg">WhatsApp</h3>
+        <p class="text-sm text-honey-600 mt-2">Fastest way to order. Click to chat with us directly.</p>
+        <span class="inline-block mt-4 text-sm font-semibold text-[#25D366] group-hover:translate-x-1 transition-transform">
+          Chat now →
+        </span>
+      </a>
+
+      <!-- Email -->
+      <a
+        href={`mailto:${businessInfo.email}`}
+        class="group bg-white border border-honey-200/60 rounded-2xl p-8 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+      >
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-honey-100 text-3xl mb-4">
+          📧
+        </div>
+        <h3 class="font-serif font-bold text-honey-900 text-lg">Email</h3>
+        <p class="text-sm text-honey-600 mt-2">For bulk orders, partnerships, or detailed queries.</p>
+        <span class="inline-block mt-4 text-sm font-semibold text-honey-600 group-hover:translate-x-1 transition-transform">
+          {businessInfo.email} →
+        </span>
+      </a>
+
+      <!-- Phone -->
+      <a
+        href={`tel:${businessInfo.phone}`}
+        class="group bg-white border border-honey-200/60 rounded-2xl p-8 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+      >
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-honey-100 text-3xl mb-4">
+          📞
+        </div>
+        <h3 class="font-serif font-bold text-honey-900 text-lg">Call Us</h3>
+        <p class="text-sm text-honey-600 mt-2">Prefer a direct call? We're happy to talk.</p>
+        <span class="inline-block mt-4 text-sm font-semibold text-honey-600 group-hover:translate-x-1 transition-transform">
+          {businessInfo.phone} →
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact Form (simple, no backend needed — uses Formspree or similar) -->
+  <section class="bg-honey-50/50 border-y border-honey-200/40">
+    <div class="max-w-2xl mx-auto px-6 py-16">
+      <h2 class="text-2xl font-serif font-bold text-honey-900 text-center mb-8">Send us a message</h2>
+      <form action={`mailto:${businessInfo.email}`} method="POST" enctype="text/plain" class="space-y-5">
+        <div>
+          <label for="name" class="block text-sm font-medium text-honey-800 mb-1.5">Your Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full px-4 py-3 rounded-xl border border-honey-200 bg-white text-honey-900 placeholder-honey-400 focus:outline-none focus:ring-2 focus:ring-honey-400 focus:border-transparent transition-all"
+            placeholder="Enter your name"
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-honey-800 mb-1.5">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-4 py-3 rounded-xl border border-honey-200 bg-white text-honey-900 placeholder-honey-400 focus:outline-none focus:ring-2 focus:ring-honey-400 focus:border-transparent transition-all"
+            placeholder="your@email.com"
+          />
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-medium text-honey-800 mb-1.5">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            required
+            class="w-full px-4 py-3 rounded-xl border border-honey-200 bg-white text-honey-900 placeholder-honey-400 focus:outline-none focus:ring-2 focus:ring-honey-400 focus:border-transparent transition-all resize-none"
+            placeholder="Tell us what you're looking for..."
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-honey-600 text-white font-semibold py-3 rounded-full hover:bg-honey-700 shadow-md hover:shadow-lg transition-all"
+        >
+          Send Message
+        </button>
+      </form>
+      <p class="text-xs text-honey-500 text-center mt-4">
+        This will open your email client. For faster response, use WhatsApp above.
+      </p>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <section class="max-w-6xl mx-auto px-6 py-16 text-center">
+    <h2 class="text-2xl font-serif font-bold text-honey-900">Where we're based</h2>
+    <p class="text-honey-600 mt-3">
+      <strong>YCR Bee Farms & Products</strong><br />
+      A8 Mansarover Colony, Ramghat Road<br />
+      Aligarh, Uttar Pradesh 202001, India
+    </p>
+    <p class="text-honey-500 mt-2 text-sm">
+      Our beekeeping farms are spread across multiple regions, following seasonal blooms.
+    </p>
+  </section>
+</Base>

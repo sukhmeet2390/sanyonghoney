@@ -1,0 +1,143 @@
+---
+import Base from '../../layouts/Base.astro';
+import WhatsAppButton from '../../components/WhatsAppButton.astro';
+import FaqItem from '../../components/FaqItem.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products, businessInfo } from '../../data/products';
+
+export function getStaticPaths() {
+  return products.map(product => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+
+const otherProducts = products.filter(p => p.slug !== product.slug).slice(0, 3);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "description": product.description,
+  "url": `https://sanyoghoney.com/products/${product.slug}/`,
+  "brand": { "@type": "Brand", "name": "Sanyog Honey" },
+  "offers": {
+    "@type": "Offer",
+    "price": product.price.replace('₹', ''),
+    "priceCurrency": "INR",
+    "availability": "https://schema.org/InStock",
+    "seller": { "@type": "Organization", "name": "Sanyog Honey" }
+  },
+  "category": "Honey",
+  "countryOfOrigin": { "@type": "Country", "name": "India" }
+};
+---
+
+<Base
+  title={product.name}
+  description={product.description}
+  canonical={`https://sanyoghoney.com/products/${product.slug}/`}
+  schema={schema}
+>
+  <!-- Breadcrumb -->
+  <section class="bg-gradient-to-b from-honey-100/60 to-cream-50">
+    <div class="max-w-6xl mx-auto px-6 pt-20 pb-4">
+      <nav class="flex items-center gap-2 text-sm text-honey-500">
+        <a href="/" class="hover:text-honey-700 transition-colors">Home</a>
+        <span>/</span>
+        <a href="/products/" class="hover:text-honey-700 transition-colors">Products</a>
+        <span>/</span>
+        <span class="text-honey-800 font-medium">{product.name}</span>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Product Detail -->
+  <section class="max-w-6xl mx-auto px-6 py-8 sm:py-16">
+    <div class="grid sm:grid-cols-2 gap-12 items-start">
+      <!-- Image -->
+      <div class="relative">
+        <div class="aspect-square rounded-2xl bg-gradient-to-br from-honey-200 to-honey-300/60 flex items-center justify-center overflow-hidden">
+          <span class="text-9xl opacity-50">🍯</span>
+        </div>
+        {product.badge && (
+          <span class="absolute top-4 left-4 text-sm font-semibold px-4 py-1.5 rounded-full bg-honey-600 text-white shadow-md">
+            {product.badge}
+          </span>
+        )}
+      </div>
+
+      <!-- Details -->
+      <div>
+        <h1 class="text-3xl sm:text-4xl font-serif font-extrabold text-honey-950">
+          {product.name}
+        </h1>
+        <p class="text-lg font-medium text-honey-600 mt-2">{product.tagline}</p>
+        
+        <div class="flex items-baseline gap-3 mt-6">
+          <span class="text-3xl font-bold text-honey-900">{product.price}</span>
+          <span class="text-lg text-honey-500">/ {product.weight}</span>
+        </div>
+
+        <p class="text-honey-700/80 mt-6 leading-relaxed">{product.description}</p>
+
+        <!-- Features -->
+        <ul class="mt-6 space-y-3">
+          {product.features.map((feature: string) => (
+            <li class="flex items-start gap-3 text-sm text-honey-700">
+              <svg class="w-5 h-5 text-sage-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+
+        <!-- CTA -->
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppButton
+            whatsappNumber={businessInfo.whatsapp}
+            productName={product.name}
+            price={product.price}
+            weight={product.weight}
+          />
+          <a
+            href={`mailto:${businessInfo.email}?subject=Order: ${product.name}&body=Hi, I'd like to order ${product.name} (${product.weight}) — ${product.price}. Please share delivery details.`}
+            class="inline-flex items-center gap-2 bg-honey-100 text-honey-800 font-semibold px-6 py-3 rounded-full hover:bg-honey-200 transition-all"
+          >
+            📧 Email Us
+          </a>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="mt-8 flex flex-wrap gap-4 text-xs text-honey-600">
+          <div class="flex items-center gap-1.5 bg-honey-50 px-3 py-1.5 rounded-full border border-honey-200/60">
+            🌿 100% Raw
+          </div>
+          <div class="flex items-center gap-1.5 bg-honey-50 px-3 py-1.5 rounded-full border border-honey-200/60">
+            🚫 No Additives
+          </div>
+          <div class="flex items-center gap-1.5 bg-honey-50 px-3 py-1.5 rounded-full border border-honey-200/60">
+            📦 Pan-India Delivery
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- More Products -->
+  {otherProducts.length > 0 && (
+    <section class="bg-honey-50/50 border-y border-honey-200/40">
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <h2 class="text-2xl font-serif font-bold text-honey-900 mb-8">You might also like</h2>
+        <div class="grid sm:grid-cols-3 gap-6 animate-in">
+          {otherProducts.map(p => (
+            <ProductCard {...p} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

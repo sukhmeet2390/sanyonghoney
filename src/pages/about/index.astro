@@ -1,0 +1,135 @@
+---
+import Base from '../../layouts/Base.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Sanyog Honey",
+  "url": "https://sanyoghoney.com/about/",
+  "description": "Learn about Sanyog Honey — a family-run beekeeping farm delivering pure, raw honey from Indian apiaries."
+};
+---
+
+<Base
+  title="About Us"
+  description="Learn about Sanyog Honey — a family-run beekeeping farm delivering pure, raw honey from Indian apiaries."
+  canonical="https://sanyoghoney.com/about/"
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-honey-100/60 via-cream-50 to-cream-50">
+    <div class="max-w-6xl mx-auto px-6 pt-24 pb-12 sm:pt-32 sm:pb-16">
+      <div class="max-w-2xl">
+        <h1 class="text-4xl sm:text-5xl font-serif font-extrabold text-honey-950 leading-[1.1]">
+          Our Story
+        </h1>
+        <p class="text-lg text-honey-700/80 mt-6 leading-relaxed">
+          Sanyog Honey started with a simple belief: honey should be honest. No added sugar, no blending, no factory processing — just pure, raw honey the way nature intended.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="max-w-6xl mx-auto px-6 py-16 sm:py-24">
+    <div class="grid sm:grid-cols-2 gap-12 items-center">
+      <div class="order-2 sm:order-1">
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-honey-900">From a passion to a purpose</h2>
+        <div class="mt-6 space-y-4 text-honey-700/80 leading-relaxed">
+          <p>
+            What started as a family hobby — keeping a few bee boxes in our backyard — grew into something bigger. Neighbors tasted our honey and kept coming back. Friends asked us to save jars for them. Word spread.
+          </p>
+          <p>
+            We realized that most honey on store shelves was heavily processed, heated, and often adulterated. People deserved better. So we decided to share our farm-fresh honey with everyone — exactly as it comes from the hive.
+          </p>
+          <p>
+            Today, Sanyog Honey manages bee colonies across multiple Indian states, following the seasonal blooms. Our bees forage on mustard, litchi, wildflowers, eucalyptus, and forest flora — each producing a unique honey with its own character.
+          </p>
+        </div>
+      </div>
+      <div class="order-1 sm:order-2">
+        <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-honey-200 to-honey-300/60 flex items-center justify-center">
+          <span class="text-8xl opacity-50">🏡</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="bg-honey-50/50 border-y border-honey-200/40">
+    <div class="max-w-6xl mx-auto px-6 py-16 sm:py-24">
+      <h2 class="text-3xl font-serif font-bold text-honey-900 text-center mb-12">What we believe in</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-in">
+        <FeatureCard
+          icon="🐝"
+          title="Bee-First Approach"
+          description="We never over-harvest. Our bees are well-cared-for, chemical-free, and given time to rebuild their stores naturally."
+        />
+        <FeatureCard
+          icon="🌾"
+          title="Seasonal Harvesting"
+          description="We harvest in sync with nature's calendar. Each season brings a different bloom and a different flavor of honey."
+        />
+        <FeatureCard
+          icon="❄️"
+          title="Cold Extraction"
+          description="Our honey is extracted without heat, preserving the natural enzymes, pollen, and nutrients that make raw honey special."
+        />
+        <FeatureCard
+          icon="🔍"
+          title="Full Transparency"
+          description="We tell you exactly where each batch comes from — the bloom, the region, the season. No vague labels."
+        />
+        <FeatureCard
+          icon="♻️"
+          title="Sustainable Packaging"
+          description="Glass jars wherever possible. Minimal packaging. We're working towards being fully plastic-free."
+        />
+        <FeatureCard
+          icon="🤝"
+          title="Direct from Farm"
+          description="No middlemen, no distributors, no factory processing. From our hives to your home — that's the Sanyog promise."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="max-w-6xl mx-auto px-6 py-16 sm:py-24">
+    <h2 class="text-3xl font-serif font-bold text-honey-900 text-center mb-12">How our honey reaches you</h2>
+    <div class="grid sm:grid-cols-4 gap-8">
+      {[
+        { step: '01', icon: '🌸', title: 'Bees Forage', description: 'Our bees visit thousands of flowers across Indian meadows, orchards, and forests.' },
+        { step: '02', icon: '🍯', title: 'Cold Extraction', description: 'Honeycomb frames are gently extracted without heat, preserving all natural goodness.' },
+        { step: '03', icon: '🧴', title: 'Jar & Seal', description: 'Fresh honey is packed into clean glass jars right at the farm. Nothing added, nothing removed.' },
+        { step: '04', icon: '📦', title: 'Ship to You', description: 'Securely packed and shipped directly to your doorstep across India.' },
+      ].map((item) => (
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-honey-100 border border-honey-200/60 text-3xl mb-4">
+            {item.icon}
+          </div>
+          <p class="text-xs font-bold text-honey-400 mb-1">STEP {item.step}</p>
+          <h3 class="font-serif font-bold text-honey-900">{item.title}</h3>
+          <p class="text-sm text-honey-700/70 mt-2 leading-relaxed">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-honey-100/60 border-t border-honey-200/40">
+    <div class="max-w-3xl mx-auto px-6 py-16 text-center">
+      <h2 class="text-2xl font-serif font-bold text-honey-900">Want to know more?</h2>
+      <p class="text-honey-600 mt-3">We love talking about bees and honey. Reach out anytime.</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <a href="/contact/" class="bg-honey-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-honey-700 shadow-md transition-all">
+          Contact Us
+        </a>
+        <a href="/products/" class="bg-white text-honey-800 font-semibold px-6 py-3 rounded-full border border-honey-200 hover:bg-honey-50 transition-all">
+          Browse Products
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

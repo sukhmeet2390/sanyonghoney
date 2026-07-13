@@ -1,0 +1,145 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  schema?: object;
+}
+
+const { title, description, canonical, schema } = Astro.props;
+const siteUrl = 'https://sanyoghoney.com';
+const fullTitle = title === 'Sanyog Honey' ? 'Sanyog Honey — Pure Raw Honey · Farm to Table' : `${title} — Sanyog Honey`;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{fullTitle}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Canonical -->
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical || siteUrl} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Animations -->
+    <style>
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(24px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-in {
+        animation: fadeUp 0.5s ease-out both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 30%;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .animate-in { animation: none; opacity: 1; transform: none; }
+      }
+    </style>
+
+    <!-- Schema.org -->
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+  </head>
+  <body class="bg-cream-50 text-honey-950 font-sans antialiased">
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full bg-cream-50/90 backdrop-blur-md border-b border-honey-200/50 z-50">
+      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2">
+          <span class="text-2xl">🍯</span>
+          <span class="text-lg font-serif font-bold text-honey-900 hover:text-honey-600 transition-colors">
+            Sanyog Honey
+          </span>
+        </a>
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-btn" class="sm:hidden p-2 text-honey-800 hover:text-honey-600" aria-label="Open menu">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <!-- Desktop nav -->
+        <div class="hidden sm:flex items-center gap-8 text-sm font-medium text-honey-800">
+          <a href="/" class="hover:text-honey-600 transition-colors">Home</a>
+          <a href="/about/" class="hover:text-honey-600 transition-colors">About Us</a>
+          <a href="/products/" class="hover:text-honey-600 transition-colors">Products</a>
+          <a href="/contact/" class="bg-honey-600 text-white px-4 py-2 rounded-full hover:bg-honey-700 transition-colors">Contact Us</a>
+        </div>
+      </div>
+      <!-- Mobile nav -->
+      <div id="mobile-menu" class="hidden sm:hidden border-t border-honey-200/50 bg-cream-50/95 backdrop-blur-md">
+        <div class="px-6 py-4 flex flex-col gap-3 text-sm font-medium text-honey-800">
+          <a href="/" class="py-2 hover:text-honey-600 transition-colors">Home</a>
+          <a href="/about/" class="py-2 hover:text-honey-600 transition-colors">About Us</a>
+          <a href="/products/" class="py-2 hover:text-honey-600 transition-colors">Products</a>
+          <a href="/contact/" class="py-2 bg-honey-600 text-white text-center px-4 rounded-full hover:bg-honey-700 transition-colors">Contact Us</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="pt-16">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-honey-900 text-honey-100 mt-20">
+      <div class="max-w-6xl mx-auto px-6 py-12">
+        <div class="grid sm:grid-cols-3 gap-8">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-2xl">🍯</span>
+              <p class="font-serif font-bold text-lg text-white">Sanyog Honey</p>
+            </div>
+            <p class="text-sm text-honey-300 leading-relaxed">
+              Pure raw honey from Indian beekeeping farms. Unprocessed, unfiltered, and delivered straight from the hive to your table.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-white mb-3">Quick Links</h3>
+            <div class="flex flex-col gap-2 text-sm text-honey-300">
+              <a href="/" class="hover:text-honey-100 transition-colors">Home</a>
+              <a href="/about/" class="hover:text-honey-100 transition-colors">About Us</a>
+              <a href="/products/" class="hover:text-honey-100 transition-colors">Products</a>
+              <a href="/contact/" class="hover:text-honey-100 transition-colors">Contact Us</a>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-semibold text-white mb-3">Get in Touch</h3>
+            <div class="flex flex-col gap-2 text-sm text-honey-300">
+              <a href="mailto:sanyoghoney@gmail.com" class="hover:text-honey-100 transition-colors">📧 sanyoghoney@gmail.com</a>
+              <a href="https://wa.me/919958577259" target="_blank" rel="noopener" class="hover:text-honey-100 transition-colors">💬 WhatsApp Us</a>
+              <span>📍 Aligarh, Uttar Pradesh, India</span>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-honey-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p class="text-xs text-honey-400">&copy; {new Date().getFullYear()} Sanyog Honey. All rights reserved.</p>
+          <p class="text-xs text-honey-400">Made with ❤️ in India</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile menu toggle -->
+    <script>
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+    </script>
+  </body>
+</html>

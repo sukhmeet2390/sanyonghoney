@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Sanyog Honey Products",
+  "url": "https://sanyoghoney.com/products/",
+  "description": "Browse our collection of pure, raw Indian honey — wildflower, mustard, litchi, forest, multiflora, and fresh honeycomb.",
+  "hasPart": products.map(p => ({
+    "@type": "Product",
+    "name": p.name,
+    "description": p.description,
+    "url": `https://sanyoghoney.com/products/${p.slug}/`,
+    "offers": {
+      "@type": "Offer",
+      "price": p.price.replace('₹', ''),
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock"
+    }
+  }))
+};
+---
+
+<Base
+  title="Products"
+  description="Browse our collection of pure, raw Indian honey — wildflower, mustard, litchi, forest, multiflora, and fresh honeycomb."
+  canonical="https://sanyoghoney.com/products/"
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-honey-100/60 via-cream-50 to-cream-50">
+    <div class="max-w-6xl mx-auto px-6 pt-24 pb-8 sm:pt-32 sm:pb-12">
+      <h1 class="text-4xl sm:text-5xl font-serif font-extrabold text-honey-950 leading-[1.1]">
+        Our Honey Collection
+      </h1>
+      <p class="text-lg text-honey-700/80 mt-4 max-w-xl leading-relaxed">
+        Every variety has its own character — from the mild sweetness of litchi blossom to the bold depth of forest honey. All raw, all pure, all natural.
+      </p>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <section class="max-w-6xl mx-auto px-6 py-12 sm:py-16">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-in">
+      {products.map(product => (
+        <ProductCard {...product} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Ordering Info -->
+  <section class="bg-honey-50/50 border-y border-honey-200/40">
+    <div class="max-w-3xl mx-auto px-6 py-12 text-center">
+      <h2 class="text-2xl font-serif font-bold text-honey-900">How to Order</h2>
+      <p class="text-honey-700/80 mt-3 leading-relaxed">
+        Click on any product, then hit <strong>"Order on WhatsApp"</strong> to place your order directly. We'll confirm quantity, delivery address, and payment details over chat. Simple, personal, and quick.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-6 text-sm text-honey-600">
+        <div class="flex items-center gap-2">
+          <span>📦</span> Pan-India delivery
+        </div>
+        <div class="flex items-center gap-2">
+          <span>💳</span> UPI / Bank transfer
+        </div>
+        <div class="flex items-center gap-2">
+          <span>🔄</span> Satisfaction guaranteed
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
